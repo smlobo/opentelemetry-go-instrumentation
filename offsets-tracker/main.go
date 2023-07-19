@@ -77,6 +77,10 @@ func main() {
 				StructName: "net/url.URL",
 				Field:      "Path",
 			},
+			{
+				StructName: "net/url.URL",
+				Field:      "RawQuery",
+			},
 		})
 
 	if err != nil {
