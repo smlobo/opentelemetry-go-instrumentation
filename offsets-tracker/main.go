@@ -39,7 +39,7 @@ func main() {
 	outputFile := flag.String("output", outputFilename, "output file")
 	flag.Parse()
 
-	minimunGoVersion, err := version.NewConstraint(">= 1.12")
+	minimunGoVersion, err := version.NewConstraint(">= 1.20")
 	if err != nil {
 		log.Fatalf("error in parsing version constraint: %v\n", err)
 	}
