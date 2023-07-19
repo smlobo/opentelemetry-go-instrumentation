@@ -16,9 +16,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"net/http"
-	"github.com/go-chi/chi/v5"
 )
 
 func chihello(w http.ResponseWriter, _ *http.Request) {
