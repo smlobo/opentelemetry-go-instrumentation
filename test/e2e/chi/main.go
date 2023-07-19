@@ -16,6 +16,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/go-chi/chi/v5/middleware"
 	"net/http"
 	"github.com/go-chi/chi/v5"
 )
@@ -26,6 +27,7 @@ func chihello(w http.ResponseWriter, _ *http.Request) {
 
 func main() {
 	r := chi.NewRouter()
+	r.Use(middleware.Logger)
 	r.Get("/chi-server", chihello)
 	_ = http.ListenAndServe(":8080", r)
 }
