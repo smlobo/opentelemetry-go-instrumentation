@@ -48,6 +48,7 @@ type Event struct {
 	EndTime           uint64
 	Method            [7]byte
 	Path              [100]byte
+	Params            [100]byte
 	SpanContext       context.EBPFSpanContext
 	ParentSpanContext context.EBPFSpanContext
 }
@@ -199,6 +200,7 @@ func (h *Instrumentor) Run(eventsChan chan<- *events.Event) {
 func (h *Instrumentor) convertEvent(e *Event) *events.Event {
 	method := unix.ByteSliceToString(e.Method[:])
 	path := unix.ByteSliceToString(e.Path[:])
+	params := unix.ByteSliceToString(e.Params[:])
 
 	sc := trace.NewSpanContext(trace.SpanContextConfig{
 		TraceID:    e.SpanContext.TraceID,
@@ -232,6 +234,7 @@ func (h *Instrumentor) convertEvent(e *Event) *events.Event {
 		Attributes: []attribute.KeyValue{
 			semconv.HTTPMethodKey.String(method),
 			semconv.HTTPTargetKey.String(path),
+			semconv.HTTPTargetKey.String(params),
 		},
 	}
 }
